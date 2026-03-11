@@ -30,70 +30,95 @@
   </div>
 
   <!-- RIGHT PANEL -->
-  <div class="auth-right">
-    <div class="auth-card">
-      <div class="auth-tabs">
-        <button id="tab-login" class="auth-tab active" onclick="showTab('login')">Sign In</button>
-        <button id="tab-register" class="auth-tab" onclick="showTab('register')">Register</button>
-      </div>
+<div class="auth-right">
+  <div class="auth-card">
+    <div class="auth-tabs">
+      <button id="tab-login" class="auth-tab active" onclick="showTab('login')">Sign In</button>
+      <button id="tab-register" class="auth-tab" onclick="showTab('register')">Register</button>
+    </div>
 
-      <!-- LOGIN FORM -->
-      <div id="form-login">
-        <h2 style="font-family:var(--font-display);font-size:28px;font-weight:700;margin-bottom:8px">Welcome back</h2>
-        <p style="font-size:14px;color:var(--text-muted);margin-bottom:28px">Sign in to your Lagora account</p>
-        <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input" placeholder="you@example.com"></div>
-        <div class="form-group">
-          <label class="form-label" style="display:flex;justify-content:space-between">Password <a href="#" style="font-weight:400;color:var(--primary);font-size:12px">Forgot password?</a></label>
-          <input type="password" class="form-input" placeholder="••••••••">
-        </div>
-        <button class="btn-submit" onclick="handleLogin()">Sign In</button>
-        <div style="display:flex;align-items:center;gap:12px;margin:24px 0">
-          <div style="flex:1;height:1px;background:var(--border)"></div>
-          <span style="font-size:13px;color:var(--text-light)">or continue with</span>
-          <div style="flex:1;height:1px;background:var(--border)"></div>
-        </div>
-        <button onclick="handleLogin()" style="width:100%;padding:13px;border:1.5px solid var(--border);border-radius:50px;background:white;cursor:pointer;font-size:14px;font-weight:600;font-family:var(--font-body);color:var(--text);display:flex;align-items:center;justify-content:center;gap:10px;transition:var(--transition)">
-          <span style="font-size:18px">📘</span> Continue with Facebook
-        </button>
-        <p style="text-align:center;margin-top:24px;font-size:13.5px;color:var(--text-muted)">Don't have an account? <a href="#" onclick="showTab('register')" style="color:var(--primary);font-weight:600">Register here</a></p>
+    <!-- LOGIN FORM -->
+    <div id="form-login">
+      <h2 style="font-family:var(--font-display);font-size:28px;font-weight:700;margin-bottom:8px">Welcome back</h2>
+      <p style="font-size:14px;color:var(--text-muted);margin-bottom:28px">Sign in to your Lagora account</p>
+      <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input" placeholder="you@example.com"></div>
+      <div class="form-group">
+        <label class="form-label" style="display:flex;justify-content:space-between">Password <a href="#" style="font-weight:400;color:var(--primary);font-size:12px">Forgot password?</a></label>
+        <input type="password" class="form-input" placeholder="••••••••">
       </div>
+      <button class="btn-submit" onclick="handleLogin()">Sign In</button>
+      <div style="display:flex;align-items:center;gap:12px;margin:24px 0">
+        <div style="flex:1;height:1px;background:var(--border)"></div>
+        <span style="font-size:13px;color:var(--text-light)">or continue with</span>
+        <div style="flex:1;height:1px;background:var(--border)"></div>
+      </div>
+      <button onclick="handleLogin()" style="width:100%;padding:13px;border:1.5px solid var(--border);border-radius:50px;background:white;cursor:pointer;font-size:14px;font-weight:600;font-family:var(--font-body);color:var(--text);display:flex;align-items:center;justify-content:center;gap:10px;transition:var(--transition)">
+        <span style="font-size:18px">📘</span> Continue with Facebook
+      </button>
+      <p style="text-align:center;margin-top:24px;font-size:13.5px;color:var(--text-muted)">Don't have an account? <a href="#" onclick="showTab('register')" style="color:var(--primary);font-weight:600">Register here</a></p>
+    </div>
 
-      <!-- REGISTER FORM -->
-      <div id="form-register" style="display:none">
-        <h2 style="font-family:var(--font-display);font-size:28px;font-weight:700;margin-bottom:8px">Join Lagora</h2>
-        <p style="font-size:14px;color:var(--text-muted);margin-bottom:28px">Create your free community account</p>
-        <div class="form-row">
-          <div class="form-group"><label class="form-label">First Name</label><input type="text" class="form-input" placeholder="Maria"></div>
-          <div class="form-group"><label class="form-label">Last Name</label><input type="text" class="form-input" placeholder="Santos"></div>
-        </div>
-        <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input" placeholder="you@example.com"></div>
-        <div class="form-group">
-          <label class="form-label">Municipality</label>
-          <select class="form-input">
-            <option value="">Select your location…</option>
-            <option>Pagsanjan</option>
-            <option>Sta. Cruz</option>
-            <option>Magdalena</option>
-            <option>Calamba</option>
-            <option>San Pablo</option>
-            <option>Bay</option>
-            <option>Other (Laguna)</option>
-          </select>
-        </div>
-        <div class="form-group"><label class="form-label">Password</label><input type="password" class="form-input" placeholder="Min. 8 characters"></div>
-        <div class="form-group">
-          <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:13px;color:var(--text-muted)">
-            <input type="checkbox" style="margin-top:2px;accent-color:var(--primary)">
-            I agree to Lagora's <a href="about.html#terms" style="color:var(--primary)">Terms of Use</a> and <a href="about.html#privacy" style="color:var(--primary)">Privacy Policy</a>
+    <!-- REGISTER FORM -->
+    <div id="form-register" style="display:none">
+      <h2 style="font-family:var(--font-display);font-size:28px;font-weight:700;margin-bottom:8px">Join Lagora</h2>
+      <p style="font-size:14px;color:var(--text-muted);margin-bottom:22px">Create your free community account</p>
+
+      <!-- ROLE SELECTOR -->
+      <div style="margin-bottom:22px">
+        <label class="form-label">I want to…</label>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px">
+          <label id="role-buyer-card" onclick="selectRole('buyer')" style="border:2px solid var(--primary);border-radius:var(--radius-lg);padding:16px 14px;cursor:pointer;transition:var(--transition);background:var(--bg-blue-tint);text-align:center">
+            <div style="font-size:28px;margin-bottom:6px">🛒</div>
+            <div style="font-size:13.5px;font-weight:700;color:var(--primary)">Shop & Buy</div>
+            <div style="font-size:11.5px;color:var(--text-muted);margin-top:3px">Browse local products</div>
+            <input type="radio" name="role" value="buyer" checked style="display:none">
+          </label>
+          <label id="role-seller-card" onclick="selectRole('seller')" style="border:2px solid var(--border);border-radius:var(--radius-lg);padding:16px 14px;cursor:pointer;transition:var(--transition);background:white;text-align:center">
+            <div style="font-size:28px;margin-bottom:6px">🏪</div>
+            <div style="font-size:13.5px;font-weight:700;color:var(--text-muted)">Sell Products</div>
+            <div style="font-size:11.5px;color:var(--text-muted);margin-top:3px">Apply to become a seller</div>
+            <input type="radio" name="role" value="seller" style="display:none">
           </label>
         </div>
-        <button class="btn-submit" onclick="handleRegister()">Create Account</button>
-        <p style="text-align:center;margin-top:24px;font-size:13.5px;color:var(--text-muted)">Already have an account? <a href="#" onclick="showTab('login')" style="color:var(--primary);font-weight:600">Sign in</a></p>
+        <div id="seller-note" style="display:none;margin-top:10px;padding:10px 14px;background:#FFFBEB;border:1px solid #FDE68A;border-radius:var(--radius);font-size:12.5px;color:#92400E">
+          🏪 You'll register as a buyer first. After verifying your account, you can apply for a Seller account from your dashboard.
+        </div>
       </div>
+
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">First Name</label><input type="text" class="form-input" placeholder="Maria"></div>
+        <div class="form-group"><label class="form-label">Last Name</label><input type="text" class="form-input" placeholder="Santos"></div>
+      </div>
+      <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input" placeholder="you@example.com"></div>
+      <div class="form-group">
+        <label class="form-label">Municipality</label>
+        <select class="form-input">
+          <option value="">Select your location…</option>
+          <option>Pagsanjan</option>
+          <option>Sta. Cruz</option>
+          <option>Magdalena</option>
+          <option>Calamba</option>
+          <option>San Pablo</option>
+          <option>Bay</option>
+          <option>Other (Laguna)</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label">Password</label><input type="password" class="form-input" placeholder="Min. 8 characters"></div>
+      <div class="form-group">
+        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:13px;color:var(--text-muted)">
+          <input type="checkbox" style="margin-top:2px;accent-color:var(--primary)">
+          I agree to Lagora's <a href="about.html#terms" style="color:var(--primary)">Terms of Use</a> and <a href="about.html#privacy" style="color:var(--primary)">Privacy Policy</a>
+        </label>
+      </div>
+      <button class="btn-submit" onclick="handleRegister()">Create Account</button>
+      <p style="text-align:center;margin-top:24px;font-size:13.5px;color:var(--text-muted)">Already have an account? <a href="#" onclick="showTab('login')" style="color:var(--primary);font-weight:600">Sign in</a></p>
     </div>
   </div>
 </div>
+</div>
 
+<script src="data.js"></script>
+<script src="main.js"></script>
 <script src="data.js"></script>
 <script src="main.js"></script>
 <script>
@@ -103,13 +128,35 @@ function showTab(tab) {
   document.getElementById('tab-login').classList.toggle('active', tab === 'login');
   document.getElementById('tab-register').classList.toggle('active', tab === 'register');
 }
+function selectRole(role) {
+  const buyerCard = document.getElementById('role-buyer-card');
+  const sellerCard = document.getElementById('role-seller-card');
+  const note = document.getElementById('seller-note');
+  if (role === 'buyer') {
+    buyerCard.style.borderColor = 'var(--primary)';
+    buyerCard.style.background = 'var(--bg-blue-tint)';
+    buyerCard.querySelector('div:nth-child(2)').style.color = 'var(--primary)';
+    sellerCard.style.borderColor = 'var(--border)';
+    sellerCard.style.background = 'white';
+    sellerCard.querySelector('div:nth-child(2)').style.color = 'var(--text-muted)';
+    note.style.display = 'none';
+  } else {
+    sellerCard.style.borderColor = 'var(--primary)';
+    sellerCard.style.background = 'var(--bg-blue-tint)';
+    sellerCard.querySelector('div:nth-child(2)').style.color = 'var(--primary)';
+    buyerCard.style.borderColor = 'var(--border)';
+    buyerCard.style.background = 'white';
+    buyerCard.querySelector('div:nth-child(2)').style.color = 'var(--text-muted)';
+    note.style.display = 'block';
+  }
+}
 function handleLogin() {
   showToast('Welcome back to Lagora! Redirecting…', '🎉');
-  setTimeout(() => window.location.href = 'index.html', 1500);
+  setTimeout(() => window.location.href = 'buyer-dashboard.html', 1500);
 }
 function handleRegister() {
   showToast('Account created! Welcome to Lagora! 🌿', '✅');
-  setTimeout(() => window.location.href = 'index.html', 1500);
+  setTimeout(() => window.location.href = 'buyer-dashboard.html', 1500);
 }
 if (location.search.includes('register=1')) showTab('register');
 </script>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Dashboard – Lagora</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230038A8'/><text y='.9em' font-size='64' x='18' fill='%23FCD116'>L</text></svg>">
+</head>
+<body>
+<div class="dash-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="dash-sidebar">
+    <div class="dash-sidebar-header">
+      <a href="index.html" style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
+        <div class="logo-mark" style="width:34px;height:34px;font-size:17px">L</div>
+        <span class="logo-text" style="font-size:20px">Lagora</span>
+      </a>
+      <div class="dash-sidebar-user">
+        <div class="dash-sidebar-avatar av-blue">M</div>
+        <div>
+          <div class="dash-sidebar-name">Maria Santos</div>
+          <div class="dash-sidebar-role">📍 Sta. Cruz · Buyer</div>
+        </div>
+      </div>
+      <div class="dash-mode-toggle">
+        <button class="dash-mode-btn active">🛒 Buyer</button>
+        <button class="dash-mode-btn" onclick="showToast('Apply to become a seller from the dashboard below.','🏪')">🏪 Seller</button>
+      </div>
+    </div>
+    <nav class="dash-nav">
+      <div class="dash-nav-section">Main</div>
+      <button class="dash-nav-link active" onclick="showSection('overview',this)"><span class="nav-icon">🏠</span> Overview</button>
+      <button class="dash-nav-link" onclick="showSection('orders',this)"><span class="nav-icon">📦</span> My Orders <span class="nav-badge">3</span></button>
+      <button class="dash-nav-link" onclick="showSection('wishlist-dash',this)"><span class="nav-icon">❤️</span> Wishlist</button>
+      <button class="dash-nav-link" onclick="showSection('messages',this)"><span class="nav-icon">💬</span> Messages <span class="nav-badge">2</span></button>
+      <div class="dash-nav-section" style="margin-top:8px">Account</div>
+      <button class="dash-nav-link" onclick="showSection('profile',this)"><span class="nav-icon">👤</span> My Profile</button>
+      <a href="index.html" class="dash-nav-link"><span class="nav-icon">🛍️</span> Back to Shop</a>
+      <button class="dash-nav-link" onclick="showToast('Signed out. See you soon!','👋');setTimeout(()=>window.location.href='index.html',1200)" style="margin-top:auto;color:var(--accent)"><span class="nav-icon">🚪</span> Sign Out</button>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="dash-main">
+
+    <!-- OVERVIEW -->
+    <div id="section-overview">
+      <div class="dash-topbar">
+        <div>
+          <div class="dash-page-title">Good morning, Maria! 👋</div>
+          <div class="dash-page-sub">Here's what's happening with your account.</div>
+        </div>
+        <a href="shop.html" class="btn-hero-primary" style="font-size:13px;padding:10px 22px">Browse Market →</a>
+      </div>
+
+      <!-- Seller CTA -->
+      <div class="seller-apply-banner">
+        <div>
+          <h3>Ready to Sell on Lagora? 🏪</h3>
+          <p>Join verified local sellers and reach buyers across Pagsanjan & Sta. Cruz. Setup is free.</p>
+        </div>
+        <button class="btn-apply" onclick="openModal('apply-modal')">Apply as Seller</button>
+      </div>
+
+      <div class="dash-stats">
+        <div class="dash-stat-card">
+          <div class="dash-stat-icon">📦</div>
+          <div class="dash-stat-value">7</div>
+          <div class="dash-stat-label">Total Orders</div>
+          <div class="dash-stat-delta up">↑ 2 this month</div>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-icon">❤️</div>
+          <div class="dash-stat-value" id="wishlist-stat">0</div>
+          <div class="dash-stat-label">Saved Items</div>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-icon">💬</div>
+          <div class="dash-stat-value">2</div>
+          <div class="dash-stat-label">Unread Messages</div>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-icon">⭐</div>
+          <div class="dash-stat-value">4</div>
+          <div class="dash-stat-label">Reviews Given</div>
+        </div>
+      </div>
+
+      <div class="dash-card">
+        <div class="dash-card-header">
+          <span class="dash-card-title">Recent Orders</span>
+          <span class="dash-card-action" onclick="showSection('orders',null)">View all →</span>
+        </div>
+        <div class="dash-card-body">
+          <table class="dash-table">
+            <thead><tr><th>Product</th><th>Seller</th><th>Date</th><th>Amount</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Suman Malagkit (12 pcs)</strong></td><td>Aling Rosa Sweets</td><td>Mar 10, 2026</td><td>₱180</td><td><span class="dash-status delivered">Delivered</span></td></tr>
+              <tr><td><strong>Fresh Tilapia (1kg)</strong></td><td>Pagsanjan Fish Farm</td><td>Mar 9, 2026</td><td>₱200</td><td><span class="dash-status delivered">Delivered</span></td></tr>
+              <tr><td><strong>Tutoring – Math Session</strong></td><td>Teacher Jen</td><td>Mar 11, 2026</td><td>₱150</td><td><span class="dash-status processing">Processing</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORDERS -->
+    <div id="section-orders" style="display:none">
+      <div class="dash-topbar">
+        <div>
+          <div class="dash-page-title">My Orders</div>
+          <div class="dash-page-sub">Track all your purchases from local sellers.</div>
+        </div>
+      </div>
+      <div class="dash-card" style="margin-bottom:20px">
+        <div class="dash-card-header"><span class="dash-card-title">All Orders (7)</span>
+          <select class="sort-select" style="font-size:12.5px;padding:6px 12px">
+            <option>All Statuses</option><option>Delivered</option><option>Processing</option><option>Pending</option>
+          </select>
+        </div>
+        <div class="dash-card-body">
+          <table class="dash-table">
+            <thead><tr><th>Order #</th><th>Product</th><th>Seller</th><th>Date</th><th>Amount</th><th>Status</th><th></th></tr></thead>
+            <tbody>
+              <tr><td style="color:var(--text-muted)">#1007</td><td><strong>Suman Malagkit (12 pcs)</strong></td><td>Aling Rosa Sweets</td><td>Mar 10</td><td>₱180</td><td><span class="dash-status delivered">Delivered</span></td><td><button onclick="showSection('order-track',null)" style="font-size:12px;color:var(--primary);background:none;border:none;cursor:pointer;font-weight:600">Track</button></td></tr>
+              <tr><td style="color:var(--text-muted)">#1006</td><td><strong>Fresh Tilapia 1kg</strong></td><td>Pagsanjan Fish Farm</td><td>Mar 9</td><td>₱200</td><td><span class="dash-status delivered">Delivered</span></td><td><button onclick="showSection('order-track',null)" style="font-size:12px;color:var(--primary);background:none;border:none;cursor:pointer;font-weight:600">Track</button></td></tr>
+              <tr><td style="color:var(--text-muted)">#1005</td><td><strong>Tutoring – Math Session</strong></td><td>Teacher Jen</td><td>Mar 11</td><td>₱150</td><td><span class="dash-status processing">Processing</span></td><td><button onclick="showSection('order-track',null)" style="font-size:12px;color:var(--primary);background:none;border:none;cursor:pointer;font-weight:600">Track</button></td></tr>
+              <tr><td style="color:var(--text-muted)">#1004</td><td><strong>Buko Pie (6-inch)</strong></td><td>Aling Cora Bakery</td><td>Mar 5</td><td>₱230</td><td><span class="dash-status delivered">Delivered</span></td><td><button onclick="showSection('order-track',null)" style="font-size:12px;color:var(--primary);background:none;border:none;cursor:pointer;font-weight:600">Track</button></td></tr>
+              <tr><td style="color:var(--text-muted)">#1003</td><td><strong>Tablea Drink Mix (24 pcs)</strong></td><td>Cacao Ni Nanay</td><td>Feb 28</td><td>₱210</td><td><span class="dash-status delivered">Delivered</span></td><td><button onclick="showSection('order-track',null)" style="font-size:12px;color:var(--primary);background:none;border:none;cursor:pointer;font-weight:600">Track</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORDER TRACKING -->
+    <div id="section-order-track" style="display:none">
+      <div class="dash-topbar">
+        <div>
+          <div class="dash-page-title">Order #1005</div>
+          <div class="dash-page-sub">Math Tutoring Session · Teacher Jen · ₱150</div>
+        </div>
+        <button onclick="showSection('orders',null)" style="background:none;border:1.5px solid var(--border);padding:9px 18px;border-radius:50px;font-size:13px;cursor:pointer;font-weight:600">← Back to Orders</button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+        <div class="dash-card">
+          <div class="dash-card-header"><span class="dash-card-title">Order Timeline</span></div>
+          <div class="dash-card-body" style="padding:24px">
+            <div class="order-timeline">
+              <div class="timeline-step"><div class="timeline-dot done">✓</div><div class="timeline-info"><div class="timeline-label">Order Placed</div><div class="timeline-date">Mar 11, 2026 · 9:14 AM</div></div></div>
+              <div class="timeline-step"><div class="timeline-dot done">✓</div><div class="timeline-info"><div class="timeline-label">Seller Confirmed</div><div class="timeline-date">Mar 11, 2026 · 10:02 AM</div></div></div>
+              <div class="timeline-step"><div class="timeline-dot current">⏳</div><div class="timeline-info"><div class="timeline-label">Processing / Preparing</div><div class="timeline-date">In progress</div></div></div>
+              <div class="timeline-step"><div class="timeline-dot future">○</div><div class="timeline-info"><div class="timeline-label">Ready for Pickup / Delivery</div><div class="timeline-date">Estimated: Mar 13, 2026</div></div></div>
+              <div class="timeline-step"><div class="timeline-dot future">○</div><div class="timeline-info"><div class="timeline-label">Completed</div><div class="timeline-date">—</div></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-header"><span class="dash-card-title">Order Details</span></div>
+          <div class="dash-card-body" style="padding:20px">
+            <div style="display:flex;align-items:center;gap:14px;padding:14px;background:var(--bg);border-radius:var(--radius);margin-bottom:16px">
+              <div style="font-size:40px">📚</div>
+              <div><div style="font-weight:700;margin-bottom:2px">Tutoring – Math & Science</div><div style="font-size:13px;color:var(--text-muted)">Teacher Jen · 📍 Sta. Cruz</div></div>
+              <div style="margin-left:auto;font-size:18px;font-weight:700;color:var(--accent)">₱150</div>
+            </div>
+            <div style="font-size:13px;color:var(--text-muted);line-height:2">
+              <div style="display:flex;justify-content:space-between"><span>Order #</span><span style="color:var(--text);font-weight:600">#1005</span></div>
+              <div style="display:flex;justify-content:space-between"><span>Status</span><span><span class="dash-status processing">Processing</span></span></div>
+              <div style="display:flex;justify-content:space-between"><span>Payment</span><span style="color:var(--text);font-weight:600">Cash on Delivery</span></div>
+            </div>
+            <button onclick="showToast('Message sent to Teacher Jen!','💬')" style="margin-top:18px;width:100%;padding:11px;border:1.5px solid var(--primary);color:var(--primary);background:white;border-radius:50px;font-size:13.5px;font-weight:600;cursor:pointer">💬 Message Seller</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WISHLIST -->
+    <div id="section-wishlist-dash" style="display:none">
+      <div class="dash-topbar">
+        <div>
+          <div class="dash-page-title">My Wishlist</div>
+          <div class="dash-page-sub">Items you've saved from local sellers.</div>
+        </div>
+        <a href="shop.html" class="btn-hero-primary" style="font-size:13px;padding:10px 22px">Keep Shopping →</a>
+      </div>
+      <div id="dash-wishlist-grid" class="product-grid"></div>
+      <div id="dash-wishlist-empty" style="display:none;text-align:center;padding:60px 24px">
+        <div style="font-size:56px;margin-bottom:16px">🤍</div>
+        <p style="font-size:15px;color:var(--text-muted)">No saved items yet. <a href="shop.html" style="color:var(--primary);font-weight:600">Browse the market →</a></p>
+      </div>
+    </div>
+
+    <!-- MESSAGES -->
+    <div id="section-messages" style="display:none">
+      <div class="dash-topbar">
+        <div>
+          <div class="dash-page-title">Messages</div>
+          <div class="dash-page-sub">Secure conversations with local sellers.</div>
+        </div>
+      </div>
+      <div class="msg-layout">
+        <div class="msg-list">
+          <div class="msg-list-header">Conversations</div>
+          <div class="msg-thread-item active">
+            <div class="msg-thread-avatar av-orange">R</div>
+            <div style="flex:1;min-width:0">
+              <div style="display:flex;justify-content:space-between"><span class="msg-thread-name">Aling Rosa Sweets</span><span class="msg-thread-time">10:32 AM</span></div>
+              <div class="msg-thread-preview">Hi! Your suman order is ready…</div>
+            </div>
+          </div>
+          <div class="msg-thread-item">
+            <div class="msg-thread-avatar av-blue">J</div>
+            <div style="flex:1;min-width:0">
+              <div style="display:flex;justify-content:space-between"><span class="msg-thread-name">Teacher Jen</span><span class="msg-thread-time">Yesterday</span></div>
+              <div class="msg-thread-preview">Confirmed for Thursday 4pm!</div>
+            </div>
+          </div>
+          <div class="msg-thread-item">
+            <div class="msg-thread-avatar av-green">B</div>
+            <div style="flex:1;min-width:0">
+              <div style="display:flex;justify-content:space-between"><span class="msg-thread-name">Mang Berto Farm</span><span class="msg-thread-time">Mar 9</span></div>
+              <div class="msg-thread-preview">Fresh kamias available this week</div>
+            </div>
+          </div>
+        </div>
+        <div class="msg-chat">
+          <div class="msg-chat-header">
+            <div class="msg-thread-avatar av-orange" style="width:36px;height:36px;font-size:14px">R</div>
+            <div><div class="msg-chat-name">Aling Rosa Sweets</div><div class="msg-chat-meta">📍 Sta. Cruz · ✓ Verified Seller</div></div>
+          </div>
+          <div class="msg-chat-body">
+            <div class="msg-bubble them">Hi po! Your order for Suman Malagkit (12 pcs) is now ready. Can I confirm your pickup time?</div>
+            <div class="msg-bubble me">Good morning! Yes po, I can pick it up this afternoon around 3pm.</div>
+            <div class="msg-bubble them">Perfect! I'll have it wrapped and ready for you. See you at 3pm! 😊</div>
+          </div>
+          <div class="msg-chat-input">
+            <input type="text" id="msg-input" placeholder="Type a message…" onkeydown="if(event.key==='Enter')sendMsg()">
+            <button class="msg-send-btn" onclick="sendMsg()">➤</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFILE -->
+    <div id="section-profile" style="display:none">
+      <div class="dash-topbar">
+        <div class="dash-page-title">My Profile</div>
+      </div>
+      <div class="dash-card" style="max-width:640px">
+        <div class="dash-card-header"><span class="dash-card-title">Account Details</span><span class="dash-card-action" onclick="showToast('Profile saved!','✅')">Save Changes</span></div>
+        <div class="dash-card-body" style="padding:24px">
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border-light)">
+            <div class="dash-sidebar-avatar av-blue" style="width:64px;height:64px;font-size:26px">M</div>
+            <div><div style="font-size:16px;font-weight:700">Maria Santos</div><div style="font-size:13px;color:var(--text-muted)">Buyer · Sta. Cruz, Laguna</div></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">First Name</label><input type="text" class="form-input" value="Maria"></div>
+            <div class="form-group"><label class="form-label">Last Name</label><input type="text" class="form-input" value="Santos"></div>
+          </div>
+          <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input" value="maria@example.com"></div>
+          <div class="form-group"><label class="form-label">Phone Number</label><input type="tel" class="form-input" placeholder="+63 9XX XXX XXXX"></div>
+          <div class="form-group">
+            <label class="form-label">Municipality</label>
+            <select class="form-input"><option>Sta. Cruz</option><option>Pagsanjan</option></select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- SELLER APPLICATION MODAL -->
+<div class="modal-overlay" id="apply-modal">
+  <div class="modal-box" style="position:relative">
+    <button class="modal-close" onclick="closeModal('apply-modal')">✕</button>
+    <div class="modal-title">Apply as a Seller 🏪</div>
+    <div class="modal-sub">Tell us about your business. Our team reviews applications within 24 hours.</div>
+    <div class="form-group"><label class="form-label">Business / Store Name</label><input type="text" class="form-input" placeholder="e.g. Aling Rosa Sweets"></div>
+    <div class="form-group"><label class="form-label">What do you sell?</label>
+      <select class="form-input"><option value="">Select a category…</option><option>Food & Produce</option><option>Crafts & Art</option><option>Services</option><option>Fashion & Clothing</option><option>Home & Living</option></select>
+    </div>
+    <div class="form-group"><label class="form-label">Location</label>
+      <select class="form-input"><option>Pagsanjan</option><option>Sta. Cruz</option></select>
+    </div>
+    <div class="form-group"><label class="form-label">Brief description of your business</label><textarea class="form-input" rows="3" placeholder="What do you offer? How long have you been operating?"></textarea></div>
+    <div class="form-group"><label class="form-label">Valid ID / Business Permit (optional)</label><input type="file" class="form-input" style="padding:8px"></div>
+    <button class="btn-submit" onclick="submitApplication()">Submit Application →</button>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="main.js"></script>
+<script>
+function showSection(id, btn) {
+  document.querySelectorAll('[id^="section-"]').forEach(s => s.style.display = 'none');
+  document.getElementById('section-' + id).style.display = 'block';
+  if (btn) {
+    document.querySelectorAll('.dash-nav-link').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  if (id === 'wishlist-dash') renderWishlistDash();
+}
+function renderWishlistDash() {
+  const ids = getWishlist();
+  const grid = document.getElementById('dash-wishlist-grid');
+  const empty = document.getElementById('dash-wishlist-empty');
+  if (!ids.length) { grid.style.display = 'none'; empty.style.display = 'block'; return; }
+  grid.style.display = 'grid';
+  empty.style.display = 'none';
+  const items = PRODUCTS.filter(p => ids.includes(p.id));
+  grid.innerHTML = items.map(renderProductCard).join('');
+}
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('.modal-overlay').forEach(m => {
+  m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
+});
+function submitApplication() {
+  closeModal('apply-modal');
+  showToast('Application submitted! We\'ll review it within 24 hours. 🎉', '✅');
+}
+function sendMsg() {
+  const input = document.getElementById('msg-input');
+  const text = input.value.trim();
+  if (!text) return;
+  const body = document.querySelector('.msg-chat-body');
+  const bubble = document.createElement('div');
+  bubble.className = 'msg-bubble me';
+  bubble.textContent = text;
+  body.appendChild(bubble);
+  body.scrollTop = body.scrollHeight;
+  input.value = '';
+}
+document.addEventListener('DOMContentLoaded', () => {
+  const wl = getWishlist();
+  document.getElementById('wishlist-stat').textContent = wl.length;
+});
+</script>
+</body>
+</html>

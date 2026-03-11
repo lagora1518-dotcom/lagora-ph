@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product – Lagora</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230038A8'/><text y='.9em' font-size='64' x='18' fill='%23FCD116'>L</text></svg>">
+</head>
+<body>
+
+<div class="topbar">🌿 All sellers are verified by Lagora &nbsp;|&nbsp; <a href="sell.html">Start Selling Free →</a></div>
+<div class="ph-ribbon"></div>
+
+<header>
+  <div class="header-inner">
+    <div class="header-top">
+      <a href="index.html" class="logo">
+        <div class="logo-mark">L<span class="sun">⭐</span></div>
+        <div><span class="logo-text">Lagora</span><span class="logo-tagline">Pagsanjan & Sta. Cruz, Laguna</span></div>
+      </a>
+      <form class="search-bar" id="search-form" autocomplete="off">
+        <input type="text" id="search-input" placeholder="Search products, sellers, services…">
+        <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+        <div class="search-results" id="search-results"></div>
+      </form>
+      <div class="header-actions">
+        <a href="wishlist.html" class="icon-btn"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg><span class="badge wishlist-count" style="display:none">0</span></a>
+        <button class="btn-header btn-outline" onclick="window.location='login.html'">Sign In</button>
+        <button class="btn-header btn-primary" onclick="window.location='sell.html'">Sell Now</button>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li><a href="shop.html" class="nav-link">Shop All</a></li>
+        <li><a href="shop.html?cat=food" class="nav-link">Food & Produce</a></li>
+        <li><a href="shop.html?cat=crafts" class="nav-link">Crafts & Art</a></li>
+        <li><a href="shop.html?cat=services" class="nav-link">Services</a></li>
+        <li><a href="sellers.html" class="nav-link">Sellers</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="product-detail-layout" id="product-detail">
+  <div style="text-align:center;padding:60px;color:var(--text-muted)">Loading product…</div>
+</div>
+
+<section class="section section-alt">
+  <div class="section-inner">
+    <div class="section-header">
+      <div><h2 class="section-title">More from <span>Local Sellers</span></h2></div>
+      <a href="shop.html" class="view-all">View All →</a>
+    </div>
+    <div class="product-grid" id="related-products"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-ph-ribbon"></div>
+  <div class="footer-grid">
+    <div class="footer-brand"><span class="logo-text">Lagora</span><p>Laguna's community marketplace.</p></div>
+    <div class="footer-col"><h4>Shop</h4><a href="shop.html">All Products</a><a href="shop.html?cat=food">Food</a><a href="shop.html?cat=crafts">Crafts</a></div>
+    <div class="footer-col"><h4>Sell</h4><a href="sell.html">Start Selling</a><a href="sellers.html">Top Sellers</a></div>
+    <div class="footer-col"><h4>About</h4><a href="about.html">About Lagora</a><a href="contact.html">Contact</a></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 Lagora. All rights reserved.</p></div>
+</footer>
+
+<script src="data.js"></script>
+<script src="main.js"></script>
+<script>
+const params = new URLSearchParams(location.search);
+const id = parseInt(params.get('id')) || 1;
+const p = PRODUCTS.find(x => x.id === id) || PRODUCTS[0];
+
+document.title = `${p.name} – Lagora`;
+
+const detail = document.getElementById('product-detail');
+const avColors = ['av-green','av-orange','av-blue','av-purple','av-red'];
+detail.innerHTML = `
+  <div>
+    <div class="gallery-main">
+      <div class="img-placeholder" style="font-size:100px;height:420px;display:flex;align-items:center;justify-content:center;background:var(--bg-warm);">${p.emoji}</div>
+    </div>
+    <div class="gallery-thumbs">
+      ${[p.emoji,'🖼️','📦','🏷️'].map((e,i) => `<div class="gallery-thumb ${i===0?'active':''}" onclick="selectThumb(this)"><div style="width:100%;height:80px;display:flex;align-items:center;justify-content:center;font-size:28px;">${e}</div></div>`).join('')}
+    </div>
+  </div>
+  <div class="product-detail-info">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="shop.html?cat=${p.category}">${p.category.charAt(0).toUpperCase()+p.category.slice(1)}</a><span>›</span>
+      <span>${p.name.substring(0,35)}…</span>
+    </div>
+    <h1 class="detail-title">${p.name}</h1>
+    <div class="detail-price-row">
+      <span class="detail-price">₱${p.price.toLocaleString()}</span>
+      ${p.originalPrice ? `<span class="detail-original">₱${p.originalPrice.toLocaleString()}</span>` : ''}
+    </div>
+    <div class="detail-badges">
+      ${p.verified ? '<span class="detail-badge badge-verified">✓ Verified Seller</span>' : ''}
+      <span class="detail-badge badge-local">📍 ${p.location}</span>
+      ${p.badge ? `<span class="detail-badge badge-new">${p.badge}</span>` : ''}
+    </div>
+    <p class="detail-desc">This listing is from a verified local seller in ${p.location}, Laguna. All items on Lagora are screened to ensure quality and authenticity. Purchase with confidence knowing this seller has been accredited by the Lagora community verification system.</p>
+    <div class="detail-specs">
+      <div class="spec-row"><span class="spec-label">Category</span><span class="spec-value">${p.category.charAt(0).toUpperCase()+p.category.slice(1)}</span></div>
+      <div class="spec-row"><span class="spec-label">Seller</span><span class="spec-value">${p.seller} ${p.verified?'✓':''}</span></div>
+      <div class="spec-row"><span class="spec-label">Location</span><span class="spec-value">${p.location}, Laguna</span></div>
+      <div class="spec-row"><span class="spec-label">Status</span><span class="spec-value" style="color:var(--primary);font-weight:600;">● Available</span></div>
+      <div class="spec-row"><span class="spec-label">Min. Order</span><span class="spec-value">1 unit</span></div>
+    </div>
+    <div class="detail-actions">
+      <button class="btn-offer btn-buy" onclick="showToast('Purchase request sent! The seller will message you shortly.', '🛒')">🛒 &nbsp;Buy Now – Contact Seller</button>
+      <button class="btn-offer btn-msg" onclick="showToast('Opening secure message with seller…', '💬')">💬 &nbsp;Message Seller</button>
+      <button class="btn-offer" style="background:transparent;border:1.5px solid var(--border);color:var(--text)" id="wishlist-detail-btn" onclick="toggleWishlist(${p.id}, '${p.name.replace(/'/g,"\\'")}', this)">🤍 &nbsp;Save to Wishlist</button>
+    </div>
+    <div class="seller-mini">
+      <div class="seller-avatar ${avColors[p.id % avColors.length]}" style="width:48px;height:48px;font-size:18px;">${p.seller[0]}</div>
+      <div class="seller-mini-info">
+        <div class="seller-mini-name">${p.seller}</div>
+        <div class="seller-mini-meta">📍 ${p.location} · ✓ Verified Seller · ★ 4.8</div>
+      </div>
+      <button style="padding:8px 18px;border:1.5px solid var(--border);border-radius:50px;background:white;cursor:pointer;font-size:13px;font-weight:600;" onclick="window.location='sellers.html'">View Shop</button>
+    </div>
+    <div style="background:#FFF8E1;border:1px solid #FFE082;border-radius:var(--radius);padding:14px 16px;margin-top:16px;font-size:13px;color:#795548;line-height:1.6">
+      🔒 <strong>Lagora Buyer Protection:</strong> All transactions are monitored. Report any issues through our dispute resolution system.
+    </div>
+  </div>`;
+
+document.addEventListener('DOMContentLoaded', () => {
+  const wl = getWishlist();
+  const wlBtn = document.getElementById('wishlist-detail-btn');
+  if (wlBtn && wl.includes(p.id)) {
+    wlBtn.textContent = '';
+    wlBtn.innerHTML = '❤️ &nbsp;Saved to Wishlist';
+    wlBtn.classList.add('active');
+    wlBtn.style.background = '#fff0f0';
+    wlBtn.style.borderColor = 'var(--accent)';
+    wlBtn.style.color = 'var(--accent)';
+  }
+
+  const related = PRODUCTS.filter(x => x.id !== p.id && x.category === p.category).slice(0,4);
+  const fallback = PRODUCTS.filter(x => x.id !== p.id).slice(0,4);
+  renderProductGrid('related-products', related.length >= 2 ? related : fallback);
+});
+
+function selectThumb(el) {
+  document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const related = PRODUCTS.filter(x => x.id !== p.id && x.category === p.category).slice(0,4);
+  const fallback = PRODUCTS.filter(x => x.id !== p.id).slice(0,4);
+  renderProductGrid('related-products', related.length >= 2 ? related : fallback);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sellers – Lagora</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230038A8'/><text y='.9em' font-size='64' x='18' fill='%23FCD116'>L</text></svg>">
+</head>
+<body>
+
+<div class="topbar">🌿 All sellers are verified by Lagora's community accreditation system &nbsp;|&nbsp; <a href="sell.html">Join as a Seller →</a></div>
+<div class="ph-ribbon"></div>
+
+<header>
+  <div class="header-inner">
+    <div class="header-top">
+      <a href="index.html" class="logo">
+        <div class="logo-mark">L<span class="sun">⭐</span></div>
+        <div><span class="logo-text">Lagora</span><span class="logo-tagline">Pagsanjan & Sta. Cruz, Laguna</span></div>
+      </a>
+      <form class="search-bar" id="search-form" autocomplete="off">
+        <input type="text" id="search-input" placeholder="Search products, sellers, services…">
+        <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+        <div class="search-results" id="search-results"></div>
+      </form>
+      <div class="header-actions">
+        <a href="wishlist.html" class="icon-btn"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg><span class="badge wishlist-count" style="display:none">0</span></a>
+        <button class="btn-header btn-outline" onclick="window.location='login.html'">Sign In</button>
+        <button class="btn-header btn-primary" onclick="window.location='sell.html'">Sell Now</button>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li><a href="shop.html" class="nav-link">Shop All</a></li>
+        <li><a href="shop.html?cat=food" class="nav-link">Food & Produce</a></li>
+        <li><a href="shop.html?cat=crafts" class="nav-link">Crafts & Art</a></li>
+        <li><a href="shop.html?cat=services" class="nav-link">Services</a></li>
+        <li><a href="sellers.html" class="nav-link active">Sellers</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <h1>Meet Our Local Sellers</h1>
+  <p>All sellers are verified, accredited, and part of the Laguna community. Shop with confidence.</p>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+    <div style="display:flex;gap:12px;margin-bottom:36px;flex-wrap:wrap;align-items:center">
+      <input type="text" placeholder="Search sellers…" id="seller-search" style="flex:1;max-width:320px;padding:10px 18px;border:1.5px solid var(--border);border-radius:50px;font-family:var(--font-body);font-size:14px;outline:none" oninput="filterSellers()">
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="filter-btn active" onclick="setFilter('all',this)">All</button>
+        <button class="filter-btn" onclick="setFilter('food',this)">Food</button>
+        <button class="filter-btn" onclick="setFilter('crafts',this)">Crafts</button>
+        <button class="filter-btn" onclick="setFilter('services',this)">Services</button>
+        <button class="filter-btn" onclick="setFilter('fashion',this)">Fashion</button>
+      </div>
+    </div>
+    <div class="seller-grid" id="sellers-full"></div>
+
+    <div style="margin-top:56px;background:white;border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden" id="seller-profile-section">
+      <div style="background:linear-gradient(135deg,var(--primary-dark),var(--primary));padding:48px;color:white;display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center">
+        <div class="seller-avatar av-orange" style="width:88px;height:88px;font-size:36px">R</div>
+        <div>
+          <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:6px">Featured Seller</div>
+          <h2 style="font-family:var(--font-display);font-size:28px;margin-bottom:6px">Aling Rosa Sweets</h2>
+          <div style="color:rgba(255,255,255,0.75);font-size:14px;margin-bottom:16px">📍 Sta. Cruz, Laguna &nbsp;·&nbsp; ✓ Verified Seller &nbsp;·&nbsp; ★ 4.9 (148 reviews)</div>
+          <div style="font-size:14px;color:rgba(255,255,255,0.8)">Specialized in traditional Laguna kakanin — suman, biko, puto, and more. Serving the community for over 15 years.</div>
+        </div>
+      </div>
+      <div style="padding:32px">
+        <h3 style="font-family:var(--font-display);font-size:20px;margin-bottom:20px">Products from this Seller</h3>
+        <div class="product-grid" id="featured-seller-products"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--bg-warm);padding:64px 24px;text-align:center">
+  <div style="max-width:600px;margin:0 auto">
+    <h2 style="font-family:var(--font-display);font-size:34px;margin-bottom:16px">Ready to Sell on Lagora?</h2>
+    <p style="font-size:15px;color:var(--text-muted);margin-bottom:28px;line-height:1.7">Join hundreds of verified local entrepreneurs and reach buyers across Laguna. Getting started is free.</p>
+    <a href="sell.html" class="btn-hero-primary" style="display:inline-block">Start Selling Free →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-ph-ribbon"></div>
+  <div class="footer-grid">
+    <div class="footer-brand"><span class="logo-text">Lagora</span><p>Laguna's community marketplace.</p></div>
+    <div class="footer-col"><h4>Shop</h4><a href="shop.html">All Products</a><a href="shop.html?cat=food">Food</a><a href="shop.html?cat=crafts">Crafts</a></div>
+    <div class="footer-col"><h4>Sell</h4><a href="sell.html">Start Selling</a><a href="sellers.html">Browse Sellers</a></div>
+    <div class="footer-col"><h4>About</h4><a href="about.html">About Lagora</a><a href="contact.html">Contact</a></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 Lagora. All rights reserved.</p></div>
+</footer>
+
+<script src="data.js"></script>
+<script src="main.js"></script>
+<script>
+let currentFilter = 'all';
+
+const extendedSellers = [
+  ...SELLERS,
+  { id: 9, name: 'Weave Ni Lola', location: 'Pagsanjan', avatar: 'W', avClass: 'av-green', items: 18, reviews: 74, rating: 4.7, specialty: 'Woven Crafts', category: 'crafts' },
+  { id: 10, name: 'Artisano Pagsanjan', location: 'Pagsanjan', avatar: 'A', avClass: 'av-purple', items: 9, reviews: 52, rating: 5.0, specialty: 'Custom Woodcraft', category: 'crafts' },
+  { id: 11, name: 'Inay\'s Kitchen', location: 'Sta. Cruz', avatar: 'I', avClass: 'av-orange', items: 14, reviews: 88, rating: 4.8, specialty: 'Home-cooked Meals', category: 'food' },
+  { id: 12, name: 'Kuya Boy Services', location: 'Sta. Cruz', avatar: 'B', avClass: 'av-blue', items: 6, reviews: 39, rating: 4.6, specialty: 'Home Repair', category: 'services' },
+];
+
+function renderExtSellerCard(s) {
+  return `
+    <div class="seller-card" onclick="highlightSeller(${s.id})">
+      <div class="seller-avatar ${s.avClass}">${s.avatar}</div>
+      <div class="verified-badge">✓ Verified Seller</div>
+      <div class="seller-name">${s.name}</div>
+      <div class="seller-loc">📍 ${s.location}</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-bottom:10px">${s.specialty}</div>
+      <div class="seller-stats">
+        <div class="seller-stat"><strong>${s.items}</strong>Items</div>
+        <div class="seller-stat"><strong>${s.rating}★</strong>Rating</div>
+        <div class="seller-stat"><strong>${s.reviews}</strong>Reviews</div>
+      </div>
+      <button style="margin-top:14px;width:100%;padding:9px;border:1.5px solid var(--primary);color:var(--primary);background:transparent;border-radius:50px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--font-body)">View Shop</button>
+    </div>`;
+}
+
+function setFilter(cat, btn) {
+  currentFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterSellers();
+}
+
+function filterSellers() {
+  const q = document.getElementById('seller-search').value.toLowerCase();
+  const list = extendedSellers.filter(s => {
+    if (currentFilter !== 'all' && s.category && s.category !== currentFilter) return false;
+    if (q && !s.name.toLowerCase().includes(q) && !s.specialty.toLowerCase().includes(q)) return false;
+    return true;
+  });
+  document.getElementById('sellers-full').innerHTML = list.map(renderExtSellerCard).join('');
+}
+
+function highlightSeller(id) {
+  const s = extendedSellers.find(x => x.id === id);
+  if (!s) return;
+  const prods = PRODUCTS.filter(p => p.seller === s.name).slice(0,4);
+  const fallback = PRODUCTS.slice(0,4);
+  document.getElementById('featured-seller-products').innerHTML =
+    (prods.length ? prods : fallback).map(renderProductCard).join('');
+  document.getElementById('seller-profile-section').scrollIntoView({ behavior: 'smooth' });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  filterSellers();
+  renderProductGrid('featured-seller-products', PRODUCTS.filter(p => p.seller === 'Aling Rosa Sweets' || p.category === 'food').slice(0,4));
+});
+</script>
+</body>
+</html>

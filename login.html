@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In – Lagora</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230038A8'/><text y='.9em' font-size='64' x='18' fill='%23FCD116'>L</text></svg>">
+</head>
+<body style="background:var(--bg-warm)">
+
+<div class="auth-layout">
+  <!-- LEFT PANEL -->
+  <div class="auth-left">
+    <div style="position:absolute;inset:0;background:url(&quot;data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4z'/%3E%3C/g%3E%3C/svg%3E&quot;)"></div>
+    <a href="index.html" class="logo" style="position:relative">
+      <div class="logo-mark" style="width:48px;height:48px;font-size:24px">L</div>
+      <div><span class="logo-text" style="color:white">Lagora</span><span class="logo-tagline" style="color:rgba(255,255,255,0.6)">Laguna's Local Marketplace</span></div>
+    </a>
+    <div style="position:relative">
+      <h2 style="font-family:var(--font-display);font-size:36px;color:white;font-weight:700;line-height:1.25;margin-bottom:20px">Your community<br>marketplace awaits.</h2>
+      <p style="font-size:15px;color:rgba(255,255,255,0.7);line-height:1.8;margin-bottom:36px">Sign in to shop from verified local sellers, save your favorites, message sellers securely, and track your orders.</p>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;align-items:center;gap:12px;color:rgba(255,255,255,0.85);font-size:14px"><div style="width:32px;height:32px;background:rgba(255,255,255,0.12);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0">✓</div>Browse hundreds of local products</div>
+        <div style="display:flex;align-items:center;gap:12px;color:rgba(255,255,255,0.85);font-size:14px"><div style="width:32px;height:32px;background:rgba(255,255,255,0.12);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0">✓</div>Message sellers securely on-platform</div>
+        <div style="display:flex;align-items:center;gap:12px;color:rgba(255,255,255,0.85);font-size:14px"><div style="width:32px;height:32px;background:rgba(255,255,255,0.12);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0">✓</div>Save your wishlist and order history</div>
+      </div>
+    </div>
+    <p style="position:relative;font-size:12px;color:rgba(255,255,255,0.35)">© 2026 Lagora · Laguna State Polytechnic University</p>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="auth-right">
+    <div class="auth-card">
+      <div class="auth-tabs">
+        <button id="tab-login" class="auth-tab active" onclick="showTab('login')">Sign In</button>
+        <button id="tab-register" class="auth-tab" onclick="showTab('register')">Register</button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <div id="form-login">
+        <h2 style="font-family:var(--font-display);font-size:28px;font-weight:700;margin-bottom:8px">Welcome back</h2>
+        <p style="font-size:14px;color:var(--text-muted);margin-bottom:28px">Sign in to your Lagora account</p>
+        <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input" placeholder="you@example.com"></div>
+        <div class="form-group">
+          <label class="form-label" style="display:flex;justify-content:space-between">Password <a href="#" style="font-weight:400;color:var(--primary);font-size:12px">Forgot password?</a></label>
+          <input type="password" class="form-input" placeholder="••••••••">
+        </div>
+        <button class="btn-submit" onclick="handleLogin()">Sign In</button>
+        <div style="display:flex;align-items:center;gap:12px;margin:24px 0">
+          <div style="flex:1;height:1px;background:var(--border)"></div>
+          <span style="font-size:13px;color:var(--text-light)">or continue with</span>
+          <div style="flex:1;height:1px;background:var(--border)"></div>
+        </div>
+        <button onclick="handleLogin()" style="width:100%;padding:13px;border:1.5px solid var(--border);border-radius:50px;background:white;cursor:pointer;font-size:14px;font-weight:600;font-family:var(--font-body);color:var(--text);display:flex;align-items:center;justify-content:center;gap:10px;transition:var(--transition)">
+          <span style="font-size:18px">📘</span> Continue with Facebook
+        </button>
+        <p style="text-align:center;margin-top:24px;font-size:13.5px;color:var(--text-muted)">Don't have an account? <a href="#" onclick="showTab('register')" style="color:var(--primary);font-weight:600">Register here</a></p>
+      </div>
+
+      <!-- REGISTER FORM -->
+      <div id="form-register" style="display:none">
+        <h2 style="font-family:var(--font-display);font-size:28px;font-weight:700;margin-bottom:8px">Join Lagora</h2>
+        <p style="font-size:14px;color:var(--text-muted);margin-bottom:28px">Create your free community account</p>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">First Name</label><input type="text" class="form-input" placeholder="Maria"></div>
+          <div class="form-group"><label class="form-label">Last Name</label><input type="text" class="form-input" placeholder="Santos"></div>
+        </div>
+        <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input" placeholder="you@example.com"></div>
+        <div class="form-group">
+          <label class="form-label">Municipality</label>
+          <select class="form-input">
+            <option value="">Select your location…</option>
+            <option>Pagsanjan</option>
+            <option>Sta. Cruz</option>
+            <option>Magdalena</option>
+            <option>Calamba</option>
+            <option>San Pablo</option>
+            <option>Bay</option>
+            <option>Other (Laguna)</option>
+          </select>
+        </div>
+        <div class="form-group"><label class="form-label">Password</label><input type="password" class="form-input" placeholder="Min. 8 characters"></div>
+        <div class="form-group">
+          <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:13px;color:var(--text-muted)">
+            <input type="checkbox" style="margin-top:2px;accent-color:var(--primary)">
+            I agree to Lagora's <a href="about.html#terms" style="color:var(--primary)">Terms of Use</a> and <a href="about.html#privacy" style="color:var(--primary)">Privacy Policy</a>
+          </label>
+        </div>
+        <button class="btn-submit" onclick="handleRegister()">Create Account</button>
+        <p style="text-align:center;margin-top:24px;font-size:13.5px;color:var(--text-muted)">Already have an account? <a href="#" onclick="showTab('login')" style="color:var(--primary);font-weight:600">Sign in</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="main.js"></script>
+<script>
+function showTab(tab) {
+  document.getElementById('form-login').style.display = tab === 'login' ? 'block' : 'none';
+  document.getElementById('form-register').style.display = tab === 'register' ? 'block' : 'none';
+  document.getElementById('tab-login').classList.toggle('active', tab === 'login');
+  document.getElementById('tab-register').classList.toggle('active', tab === 'register');
+}
+function handleLogin() {
+  showToast('Welcome back to Lagora! Redirecting…', '🎉');
+  setTimeout(() => window.location.href = 'index.html', 1500);
+}
+function handleRegister() {
+  showToast('Account created! Welcome to Lagora! 🌿', '✅');
+  setTimeout(() => window.location.href = 'index.html', 1500);
+}
+if (location.search.includes('register=1')) showTab('register');
+</script>
+</body>
+</html>

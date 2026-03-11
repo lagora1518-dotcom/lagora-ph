@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Wishlist – Lagora</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230038A8'/><text y='.9em' font-size='64' x='18' fill='%23FCD116'>L</text></svg>">
+</head>
+<body>
+
+<div class="topbar">🌿 Your saved local favorites &nbsp;|&nbsp; <a href="shop.html">Keep Shopping →</a></div>
+<div class="ph-ribbon"></div>
+
+<header>
+  <div class="header-inner">
+    <div class="header-top">
+      <a href="index.html" class="logo">
+        <div class="logo-mark">L<span class="sun">⭐</span></div>
+        <div><span class="logo-text">Lagora</span><span class="logo-tagline">Pagsanjan & Sta. Cruz, Laguna</span></div>
+      </a>
+      <form class="search-bar" id="search-form" autocomplete="off">
+        <input type="text" id="search-input" placeholder="Search products, sellers, services…">
+        <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+        <div class="search-results" id="search-results"></div>
+      </form>
+      <div class="header-actions">
+        <a href="wishlist.html" class="icon-btn" style="border-color:var(--primary);color:var(--primary)"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span class="badge wishlist-count" style="display:none">0</span></a>
+        <button class="btn-header btn-outline" onclick="window.location='login.html'">Sign In</button>
+        <button class="btn-header btn-primary" onclick="window.location='sell.html'">Sell Now</button>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li><a href="shop.html" class="nav-link">Shop All</a></li>
+        <li><a href="shop.html?cat=food" class="nav-link">Food</a></li>
+        <li><a href="shop.html?cat=crafts" class="nav-link">Crafts</a></li>
+        <li><a href="sellers.html" class="nav-link">Sellers</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero" style="padding:40px 24px">
+  <h1 style="font-size:32px;margin-bottom:8px">❤️ My Wishlist</h1>
+  <p id="wishlist-count-text">Loading your saved items…</p>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+    <div id="wishlist-content"></div>
+  </div>
+</section>
+
+<section class="section section-alt" id="suggestions-section" style="display:none">
+  <div class="section-inner">
+    <div class="section-header">
+      <div><h2 class="section-title">You Might Also <span>Like</span></h2></div>
+      <a href="shop.html" class="view-all">View All →</a>
+    </div>
+    <div class="product-grid" id="suggestions"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-ph-ribbon"></div>
+  <div class="footer-grid">
+    <div class="footer-brand"><span class="logo-text">Lagora</span><p>Laguna's community marketplace.</p></div>
+    <div class="footer-col"><h4>Shop</h4><a href="shop.html">All Products</a><a href="shop.html?cat=food">Food</a><a href="shop.html?cat=crafts">Crafts</a></div>
+    <div class="footer-col"><h4>Sell</h4><a href="sell.html">Start Selling</a></div>
+    <div class="footer-col"><h4>About</h4><a href="about.html">About Lagora</a><a href="contact.html">Contact</a></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 Lagora. All rights reserved.</p></div>
+</footer>
+
+<script src="data.js"></script>
+<script src="main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const wishlistIds = getWishlist();
+  const container = document.getElementById('wishlist-content');
+  const countText = document.getElementById('wishlist-count-text');
+
+  if (!wishlistIds.length) {
+    countText.textContent = 'Your wishlist is empty';
+    container.innerHTML = `
+      <div class="wishlist-empty">
+        <div class="wishlist-empty-icon">🤍</div>
+        <h2 style="font-family:var(--font-display);font-size:26px;margin-bottom:12px;color:var(--text)">Your wishlist is empty</h2>
+        <p style="font-size:15px;color:var(--text-muted);margin-bottom:28px">Start saving products you love from verified local sellers in Laguna.</p>
+        <a href="shop.html" class="btn-hero-primary" style="display:inline-block">Browse the Market →</a>
+      </div>`;
+  } else {
+    const saved = PRODUCTS.filter(p => wishlistIds.includes(p.id));
+    countText.textContent = `${saved.length} item${saved.length !== 1 ? 's' : ''} saved`;
+    container.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+        <p style="font-size:14px;color:var(--text-muted)">${saved.length} item${saved.length!==1?'s':''} saved</p>
+        <button onclick="clearWishlist()" style="font-size:13px;color:#E53935;background:none;border:none;cursor:pointer;font-weight:600">Clear All</button>
+      </div>
+      <div class="product-grid">${saved.map(renderProductCard).join('')}</div>`;
+    document.getElementById('suggestions-section').style.display = 'block';
+    renderProductGrid('suggestions', PRODUCTS.filter(p => !wishlistIds.includes(p.id)).slice(0,4));
+  }
+});
+
+function clearWishlist() {
+  try { localStorage.removeItem('lagora_wishlist'); } catch(e) {}
+  location.reload();
+}
+</script>
+</body>
+</html>

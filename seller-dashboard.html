@@ -85,7 +85,7 @@
         <div class="dash-card">
           <div class="dash-card-header"><span class="dash-card-title">Recent Orders</span><span class="dash-card-action" onclick="showSection('orders-seller',null)">View all →</span></div>
           <div class="dash-card-body">
-            <table class="dash-table">
+            <div class="dash-table-wrap"><table class="dash-table">
               <thead><tr><th>Buyer</th><th>Product</th><th>Amount</th><th>Status</th></tr></thead>
               <tbody>
                 <tr><td>Maria S.</td><td>Suman Malagkit (12)</td><td>₱180</td><td><span class="dash-status delivered">Delivered</span></td></tr>
@@ -93,7 +93,7 @@
                 <tr><td>Ana R.</td><td>Puto (24 pcs)</td><td>₱240</td><td><span class="dash-status pending">Pending</span></td></tr>
                 <tr><td>Ben C.</td><td>Suman Malagkit (6)</td><td>₱90</td><td><span class="dash-status pending">Pending</span></td></tr>
               </tbody>
-            </table>
+            </table></div> 
           </div>
         </div>
         <div class="dash-card">
@@ -132,14 +132,15 @@
       </div>
       <div class="dash-card">
         <div class="dash-card-body">
-          <table class="dash-table">
+          <div class="dash-table-wrap"><table class="dash-table">
+
             <thead><tr><th>Product</th><th>Category</th><th>Price</th><th>Status</th><th>Views</th><th>Actions</th></tr></thead>
             <tbody>
               <tr><td><div style="display:flex;align-items:center;gap:10px"><span style="font-size:22px">🍡</span><strong>Suman Malagkit (12 pcs)</strong></div></td><td>Food</td><td>₱180</td><td><span class="dash-status active">Active</span></td><td>312</td><td style="display:flex;gap:8px"><button onclick="showSection('add-product',null);showToast('Editing listing…','✏️')" style="font-size:12px;color:var(--primary);background:none;border:1px solid var(--border);border-radius:50px;padding:4px 12px;cursor:pointer">Edit</button><button onclick="showToast('Listing paused.','⏸️')" style="font-size:12px;color:var(--text-muted);background:none;border:1px solid var(--border);border-radius:50px;padding:4px 12px;cursor:pointer">Pause</button></td></tr>
               <tr><td><div style="display:flex;align-items:center;gap:10px"><span style="font-size:22px">🍰</span><strong>Biko Slice (6 pcs)</strong></div></td><td>Food</td><td>₱120</td><td><span class="dash-status active">Active</span></td><td>198</td><td style="display:flex;gap:8px"><button onclick="showSection('add-product',null);showToast('Editing listing…','✏️')" style="font-size:12px;color:var(--primary);background:none;border:1px solid var(--border);border-radius:50px;padding:4px 12px;cursor:pointer">Edit</button><button onclick="showToast('Listing paused.','⏸️')" style="font-size:12px;color:var(--text-muted);background:none;border:1px solid var(--border);border-radius:50px;padding:4px 12px;cursor:pointer">Pause</button></td></tr>
               <tr><td><div style="display:flex;align-items:center;gap:10px"><span style="font-size:22px">🧁</span><strong>Puto (24 pcs)</strong></div></td><td>Food</td><td>₱240</td><td><span class="dash-status active">Active</span></td><td>144</td><td style="display:flex;gap:8px"><button onclick="showSection('add-product',null);showToast('Editing listing…','✏️')" style="font-size:12px;color:var(--primary);background:none;border:1px solid var(--border);border-radius:50px;padding:4px 12px;cursor:pointer">Edit</button><button onclick="showToast('Listing paused.','⏸️')" style="font-size:12px;color:var(--text-muted);background:none;border:1px solid var(--border);border-radius:50px;padding:4px 12px;cursor:pointer">Pause</button></td></tr>
             </tbody>
-          </table>
+          </table></div>
         </div>
       </div>
     </div>
@@ -197,7 +198,7 @@
       </div>
       <div class="dash-card">
         <div class="dash-card-body">
-          <table class="dash-table">
+          <div class="dash-table-wrap"><table class="dash-table">
             <thead><tr><th>Order #</th><th>Buyer</th><th>Product</th><th>Date</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead>
             <tbody>
               <tr><td style="color:var(--text-muted)">#2041</td><td>Maria S.</td><td>Suman Malagkit (12)</td><td>Mar 11</td><td>₱180</td><td><span class="dash-status pending">Pending</span></td><td><button onclick="showToast('Order #2041 confirmed!','✅')" style="font-size:12px;color:white;background:var(--primary);border:none;border-radius:50px;padding:5px 14px;cursor:pointer">Confirm</button></td></tr>
@@ -205,7 +206,7 @@
               <tr><td style="color:var(--text-muted)">#2039</td><td>Ana R.</td><td>Puto (24 pcs)</td><td>Mar 10</td><td>₱240</td><td><span class="dash-status delivered">Delivered</span></td><td><span style="font-size:12px;color:var(--text-muted)">Completed</span></td></tr>
               <tr><td style="color:var(--text-muted)">#2038</td><td>Ben C.</td><td>Suman Malagkit (6)</td><td>Mar 10</td><td>₱90</td><td><span class="dash-status delivered">Delivered</span></td><td><span style="font-size:12px;color:var(--text-muted)">Completed</span></td></tr>
             </tbody>
-          </table>
+          </table></div>
         </div>
       </div>
     </div>
